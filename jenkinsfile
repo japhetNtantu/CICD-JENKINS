@@ -1,0 +1,31 @@
+pipeline 
+{
+
+    agent any 
+    stages {
+        stage('MunitTest Application') { 
+        steps {
+            bat 'mvn clean test'
+                // 
+            } 
+        }
+        stage('Build Application') { 
+            steps {
+            bat 'mvn clean install'
+                // 
+            }
+        }
+        stage('Deploy Application To Mulesoft cloudhub') { 
+            steps {
+            bat 'mvn clean deploy -DmuleDeploy  -Dmule.version=4.4.0 -Danypoint.username=japhetntantu4 -Danypoint.password=Ntantukava150819 -Denv=Sandbox -Dappname=secretmapp -Dbusiness=Cap4Lab -DvCore=Micro -Dworkers=1'
+                // 
+            } 
+        }
+       stage('Postman collection Test') { 
+            steps {
+            bat 'C:\\Users\\Japhet\\AppData\\Roaming\\npm\\newman run C:\\Users\\Japhet\\AppData\\Roaming\\npm\\node_modules\\CICD.postman_collection.json --disable-unicode'
+                // 
+            }
+        }
+    }
+}
