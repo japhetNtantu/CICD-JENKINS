@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="timezoneFlow" doc:id="eb89cc69-da3d-4c65-b432-00754c9159a8" >
+		<http:listener doc:name="Listener" doc:id="912df4b5-c3f0-43e5-9e96-9d6b198ea057" config-ref="HTTP_Listener_config" path="/{region}/{city}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="bd3b139d-daf5-4169-bfa7-b00158b5e00a" message="Start of the flow"/>
+		<http:request method="GET" doc:name="Request getting the timezone API" doc:id="c6ad19ba-d5c9-48c6-bac9-206914ef3f5d" config-ref="HTTP_Request_configuration" path="/{region}/{city}">
+			<http:uri-params><![CDATA[#[output application/java
+---
+{
+	city : attributes.uriParams.city,
+	region : attributes.uriParams.region
+}]]]></http:uri-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="9057611d-d61c-4f11-a756-ec799aef9c48" message="End of the flow "/>
+	</flow>
+</mule>
