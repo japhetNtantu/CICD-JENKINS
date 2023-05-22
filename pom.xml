@@ -6,9 +6,15 @@
 	<artifactId>timezone</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
-
 	<name>timezone</name>
-
+	
+	<parent> 
+		<groupId>com.mycompany</groupId>
+		<artifactId>pom-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent> 
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -30,38 +36,11 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				
-				<configuration>
-					<cloudHubDeployment>
-						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>4.4.0</muleVersion>
-						<username>${anypoint.username}</username>
-						<password>${anypoint.password}</password>
-						<environment>Sandbox</environment>
-						<applicationName>WorldTime</applicationName>
-						<businessGroup>Cap4Lab</businessGroup>
-						<workerType>Micro</workerType>
-						<workers>1</workers>
-					</cloudHubDeployment>
-					<classifier>mule-application</classifier>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.mule.connectors</groupId>
-			<artifactId>mule-http-connector</artifactId>
-			<version>1.7.3</version>
-			<classifier>mule-plugin</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.connectors</groupId>
-			<artifactId>mule-sockets-connector</artifactId>
-			<version>1.2.3</version>
-			<classifier>mule-plugin</classifier>
-		</dependency>
-	</dependencies>
+
 
 	<repositories>
 		<repository>
