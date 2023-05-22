@@ -44,11 +44,11 @@
 						<muleVersion>4.4.0</muleVersion>
 						<username>${anypoint.username}</username>
 						<password>${anypoint.password}</password>
-						<environment>${anypoint.Denv}</environment>
-						<applicationName>${anypoint.Dappname}</applicationName>
-						<businessGroup>${anypoint.Dbusiness}</businessGroup>
-						<workerType>${anypoint.DvCore}</workerType>
-						<workers>${anypoint.Dworkers}</workers>
+						<environment>${env}</environment>
+						<applicationName>${appname}</applicationName>
+						<businessGroup>${business}</businessGroup>
+						<workerType>${vCore}</workerType>
+						<workers>${workers}</workers>
 					</cloudHubDeployment>
 					<classifier>mule-application</classifier>
 				</configuration>
